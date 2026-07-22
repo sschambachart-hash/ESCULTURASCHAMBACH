@@ -214,21 +214,21 @@
      img   = file path inside /artworks
      ===================================================================== */
   var processPhotos = [
-    { piece:"Sandal", img:"artworks/sandal-process-01.jpg" },
-    { piece:"Sandal", img:"artworks/sandal-process-02.jpg" },
-    { piece:"Sandal", img:"artworks/sandal-process-03.jpg" },
-    { piece:"Zara", img:"artworks/zara-process-01.jpg" },
-    { piece:"Zara", img:"artworks/zara-process-02.jpg" },
-    { piece:"Zara", img:"artworks/zara-process-03.jpg" },
-    { piece:"Zara", img:"artworks/zara-process-04.jpg" },
-    { piece:"Aurora", img:"artworks/aurora-process-01.jpg" },
-    { piece:"Aurora", img:"artworks/aurora-process-02.jpg" },
-    { piece:"Aurora", img:"artworks/aurora-process-03.jpg" },
-    { piece:"Valentina", img:"artworks/valentina-process-01.jpg" },
-    { piece:"Valentina", img:"artworks/valentina-process-02.jpg" },
-    { piece:"Riko", img:"artworks/riko-process-01.jpg" },
-    { piece:"Riko", img:"artworks/riko-process-02.jpg" },
-    { piece:"Riko", img:"artworks/riko-process-03.jpg" }
+    { piece:"Sandal", img:"artworks/process/sandal-process-01.jpg" },
+    { piece:"Sandal", img:"artworks/process/sandal-process-02.jpg" },
+    { piece:"Sandal", img:"artworks/process/sandal-process-03.jpg" },
+    { piece:"Zara", img:"artworks/process/zara-process-01.jpg" },
+    { piece:"Zara", img:"artworks/process/zara-process-02.jpg" },
+    { piece:"Zara", img:"artworks/process/zara-process-03.jpg" },
+    { piece:"Zara", img:"artworks/process/zara-process-04.jpg" },
+    { piece:"Aurora", img:"artworks/process/aurora-process-01.jpg" },
+    { piece:"Aurora", img:"artworks/process/aurora-process-02.jpg" },
+    { piece:"Aurora", img:"artworks/process/aurora-process-03.jpg" },
+    { piece:"Valentina", img:"artworks/process/valentina-process-01.jpg" },
+    { piece:"Valentina", img:"artworks/process/valentina-process-02.jpg" },
+    { piece:"Riko", img:"artworks/process/riko-process-01.jpg" },
+    { piece:"Riko", img:"artworks/process/riko-process-02.jpg" },
+    { piece:"Riko", img:"artworks/process/riko-process-03.jpg" }
   ];
   /* ===================================================================== */
 
@@ -244,7 +244,7 @@
     el('cTitle').innerHTML = w.title ? w.title : box('title');
     el('cMaterial').innerHTML = w.material ? '<span class="val">'+w.material+'</span>' : box('material');
     el('cDim').innerHTML = w.dimensions ? '<span class="val">'+w.dimensions+'</span>' : box('dimensions');
-    el('cNote').innerHTML = w.note ? w.note : '<span class="placeholder">+ add a short note (optional)</span>';
+    el('cNote').innerHTML = w.note ? w.note : '';
     el('counter').textContent = (i+1) + ' / ' + works.length;
     document.querySelectorAll('.dot').forEach(function(d,k){ d.classList.toggle('active', k===i); });
   }
