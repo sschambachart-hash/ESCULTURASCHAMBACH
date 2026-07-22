@@ -75,6 +75,14 @@
   .dot.active{background:var(--accent);transform:scale(1.35)}
   .counter{text-align:center;margin-top:14px;font-size:.78rem;letter-spacing:3px;color:var(--muted)}
 
+  /* Process grid */
+  .proc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px}
+  .proc-item{background:#fff;border:1px solid var(--line);overflow:hidden;box-shadow:0 8px 24px rgba(40,34,24,.08)}
+  .proc-item .ph{background:var(--stage);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .proc-item .ph img{width:100%;height:100%;object-fit:cover}
+  .proc-item .cap{padding:12px 16px;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+  .proc-item .cap span{color:var(--accent)}
+
   /* About */
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:1000px;margin:0 auto}
   .about-grid img{width:100%;border:1px solid var(--line)}
@@ -98,6 +106,7 @@
     <div class="brand">Sofia Schambach</div>
     <div class="links">
       <a href="#work">Work</a>
+      <a href="#process">Process</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
@@ -106,7 +115,7 @@
 
 <!-- HERO -->
 <section class="hero">
-  <img src="artworks/hero.jpg" alt="Diana la Cazadora, patinated bronze sculpture by Sofia Schambach">
+  <img src="artworks/hero.jpg" alt="Sofia Schambach with bronze figure">
   <div class="veil"></div>
   <div class="inner">
     <h1>SOFIA&nbsp;SCHAMBACH</h1>
@@ -130,7 +139,6 @@
           <div class="num" id="cNum"></div>
           <h3 id="cTitle"></h3>
           <div class="meta">
-            <div class="field"><label>Year</label><div id="cYear"></div></div>
             <div class="field"><label>Material</label><div id="cMaterial"></div></div>
             <div class="field"><label>Dimensions</label><div id="cDim"></div></div>
           </div>
@@ -144,18 +152,27 @@
   </div>
 </section>
 
+<!-- PROCESS -->
+<section class="sec alt" id="process">
+  <div class="wrap">
+    <div class="eyebrow">Behind the Work</div>
+    <h2>Process</h2>
+    <p class="lead">A look at each piece mid-creation, from clay to finished form.</p>
+    <div class="proc-grid" id="procGrid"></div>
+  </div>
+</section>
+
 <!-- ABOUT -->
-<section class="sec alt" id="about">
+<section class="sec" id="about">
   <div class="wrap">
     <div class="eyebrow">About</div>
     <h2>The Artist</h2>
     <div style="height:40px"></div>
     <div class="about-grid">
-      <img src="artworks/work-03.jpg" alt="Riko, clay sculpture by Sofia Schambach">
+      <img src="artworks/work-08.jpg" alt="Work by Sofia Schambach">
       <div>
-        <p>Sofia Schambach is a Guatemalan visual artist specializing in figurative sculpture, with a parallel practice in academic painting and drawing. She trained for three years at the Barcelona Academy of Art (2019&ndash;2022), studying figure modeling, anatomy, and academic drawing under instructors including the sculptor Eudald de Juana.</p>
-        <p>Nothing is symmetrical. The fat settles differently on every body, the bone pushes through in unexpected places, the flesh sags or swells in ways no diagram predicts. Schambach is drawn to the figure precisely because it is the most complex object she knows &mdash; an architecture of contradictions never fully solved.</p>
-        <p>She works primarily in clay, casting finished pieces in plaster, bronze, or resin. Her scale ranges from intimate studies to monumental commissions, including <em>Diana la Cazadora</em>, a 175&nbsp;cm patinated bronze created for a private client in Guatemala.</p>
+        <p>Sofia Schambach (b. 1999, Guatemala City) is a figurative sculptor and academic painter whose work takes the human body as its primary subject. She studied for three years at the Barcelona Academy of Art under a rigorous classical curriculum in figure modeling, anatomy, and academic drawing.</p>
+        <p>Her practice centers on the irreducible complexity of flesh &mdash; the asymmetries, textures, and surface tensions that make every body singular. She works in clay, plaster, bronze, and resin across a wide range of scales, from small studies to large-scale commissions including bronze figurative monuments. Her work has been shown in Barcelona and in Guatemala. She is based in Guatemala City, where she maintains an active studio practice.</p>
       </div>
     </div>
   </div>
@@ -180,10 +197,38 @@
      file in the /artworks folder).
      ===================================================================== */
   var works = [
-    { img:"artworks/work-01.jpg", title:"Diana la Cazadora", year:"2023–2026", material:"Patinated bronze, on natural stone base", dimensions:"175 cm height", note:"Private commission, Guatemala" },
-    { img:"artworks/work-04.jpg", title:"Sandal", year:"2021", material:"Clay, cast in resin", dimensions:"98 \u00d7 64 \u00d7 47 cm", note:"" },
-    { img:"artworks/work-03.jpg", title:"Riko", year:"2022", material:"Clay (unfired)", dimensions:"175 cm height", note:"" },
-    { img:"artworks/work-02.jpg", title:"Zara", year:"2021", material:"Resin", dimensions:"", note:"" }
+    { img:"artworks/zara-01.jpg", title:"Zara", year:"", material:"Resina y fibra de vidrio, pintada con acrílicos y pigmento de bronce", dimensions:"1.20 m de alto (tamaño real)", note:"" },
+    { img:"artworks/aurora-02.jpg", title:"Aurora", year:"", material:"Barro (pieza única, sin copias)", dimensions:"3/4 del tamaño real", note:"" },
+    { img:"artworks/diana-01.jpg", title:"Diana la Cazadora", year:"", material:"Bronce fundido", dimensions:"1.75 m de alto", note:"Comisión privada, empotrada en piedra en un jardín. Inspirada en la Diana de Reinhold Felderhoff (Kolonnadenhof, Berlín) — no es un diseño original propio, sino una interpretación por encargo." },
+    { img:"artworks/jordi-01.jpg", title:"Jordi", year:"", material:"Barro", dimensions:"Tamaño real", note:"Primer torso académico masculino a tamaño real." },
+    { img:"artworks/riko-03.jpg", title:"Riko", year:"", material:"Barro (pieza única, sin copias)", dimensions:"1.75 m de alto", note:"Explora la masculinidad al romper estereotipos que ni la época de esa persona aceptaba." },
+    { img:"artworks/sandal-08.jpg", title:"Sandal", year:"", material:"Barro", dimensions:"1.30 m de alto", note:"Torso, brazos y retrato de un bailarín profesional que posó en la academia." },
+    { img:"artworks/valentina-01.jpg", title:"Valentina", year:"", material:"Resina y fibra de vidrio", dimensions:"Tamaño real", note:"" },
+    { img:"artworks/marco-01.jpg", title:"Marco", year:"", material:"Barro", dimensions:"Tamaño real", note:"" }
+  ];
+  /* ===================================================================== */
+
+  /* =====================================================================
+     PROCESS PHOTOS — add a line per photo as you send more.
+     piece = which artwork it belongs to (just a label shown on the photo)
+     img   = file path inside /artworks
+     ===================================================================== */
+  var processPhotos = [
+    { piece:"Sandal", img:"artworks/sandal-process-01.jpg" },
+    { piece:"Sandal", img:"artworks/sandal-process-02.jpg" },
+    { piece:"Sandal", img:"artworks/sandal-process-03.jpg" },
+    { piece:"Zara", img:"artworks/zara-process-01.jpg" },
+    { piece:"Zara", img:"artworks/zara-process-02.jpg" },
+    { piece:"Zara", img:"artworks/zara-process-03.jpg" },
+    { piece:"Zara", img:"artworks/zara-process-04.jpg" },
+    { piece:"Aurora", img:"artworks/aurora-process-01.jpg" },
+    { piece:"Aurora", img:"artworks/aurora-process-02.jpg" },
+    { piece:"Aurora", img:"artworks/aurora-process-03.jpg" },
+    { piece:"Valentina", img:"artworks/valentina-process-01.jpg" },
+    { piece:"Valentina", img:"artworks/valentina-process-02.jpg" },
+    { piece:"Riko", img:"artworks/riko-process-01.jpg" },
+    { piece:"Riko", img:"artworks/riko-process-02.jpg" },
+    { piece:"Riko", img:"artworks/riko-process-03.jpg" }
   ];
   /* ===================================================================== */
 
@@ -197,7 +242,6 @@
     el('cImg').alt = (w.title || 'Sofia Schambach artwork');
     el('cNum').textContent = 'Work ' + String(i+1).padStart(2,'0');
     el('cTitle').innerHTML = w.title ? w.title : box('title');
-    el('cYear').innerHTML = w.year ? '<span class="val">'+w.year+'</span>' : box('year');
     el('cMaterial').innerHTML = w.material ? '<span class="val">'+w.material+'</span>' : box('material');
     el('cDim').innerHTML = w.dimensions ? '<span class="val">'+w.dimensions+'</span>' : box('dimensions');
     el('cNote').innerHTML = w.note ? w.note : '<span class="placeholder">+ add a short note (optional)</span>';
@@ -231,6 +275,27 @@
 
   el('yr').textContent = new Date().getFullYear();
   render();
+
+  // Process grid
+  (function renderProcess(){
+    var grid = el('procGrid');
+    processPhotos.forEach(function(p){
+      var item = document.createElement('div');
+      item.className = 'proc-item';
+      var ph = document.createElement('div');
+      ph.className = 'ph';
+      var img = document.createElement('img');
+      img.src = p.img;
+      img.alt = p.piece + ' — work in progress';
+      ph.appendChild(img);
+      var cap = document.createElement('div');
+      cap.className = 'cap';
+      cap.innerHTML = '<span>' + p.piece + '</span> &middot; work in progress';
+      item.appendChild(ph);
+      item.appendChild(cap);
+      grid.appendChild(item);
+    });
+  })();
 </script>
 </body>
 </html>
