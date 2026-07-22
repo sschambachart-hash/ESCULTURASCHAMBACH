@@ -76,12 +76,14 @@
   .counter{text-align:center;margin-top:14px;font-size:.78rem;letter-spacing:3px;color:var(--muted)}
 
   /* Process grid */
-  .proc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px}
+  .proc-grid{max-width:1080px;margin:0 auto}
+  .proc-heading{font-family:'Cormorant Garamond',serif;font-size:1.6rem;letter-spacing:2px;color:var(--accent);margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .proc-heading:first-child{margin-top:0}
+  .proc-sub{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin:12px 0 8px}
+  .proc-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-bottom:10px}
   .proc-item{background:#fff;border:1px solid var(--line);overflow:hidden;box-shadow:0 8px 24px rgba(40,34,24,.08)}
   .proc-item .ph{background:var(--stage);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .proc-item .ph img{width:100%;height:100%;object-fit:cover}
-  .proc-item .cap{padding:12px 16px;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
-  .proc-item .cap span{color:var(--accent)}
 
   /* About */
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:1000px;margin:0 auto}
@@ -213,22 +215,27 @@
      piece = which artwork it belongs to (just a label shown on the photo)
      img   = file path inside /artworks
      ===================================================================== */
-  var processPhotos = [
-    { piece:"Sandal", img:"artworks/process/sandal-process-01.jpg" },
-    { piece:"Sandal", img:"artworks/process/sandal-process-02.jpg" },
-    { piece:"Sandal", img:"artworks/process/sandal-process-03.jpg" },
-    { piece:"Zara", img:"artworks/process/zara-process-01.jpg" },
-    { piece:"Zara", img:"artworks/process/zara-process-02.jpg" },
-    { piece:"Zara", img:"artworks/process/zara-process-03.jpg" },
-    { piece:"Zara", img:"artworks/process/zara-process-04.jpg" },
-    { piece:"Aurora", img:"artworks/process/aurora-process-01.jpg" },
-    { piece:"Aurora", img:"artworks/process/aurora-process-02.jpg" },
-    { piece:"Aurora", img:"artworks/process/aurora-process-03.jpg" },
-    { piece:"Valentina", img:"artworks/process/valentina-process-01.jpg" },
-    { piece:"Valentina", img:"artworks/process/valentina-process-02.jpg" },
-    { piece:"Riko", img:"artworks/process/riko-process-01.jpg" },
-    { piece:"Riko", img:"artworks/process/riko-process-02.jpg" },
-    { piece:"Riko", img:"artworks/process/riko-process-03.jpg" }
+  var pieceGallery = [
+    { name:"Zara",
+      process:["artworks/process/process-02.jpg","artworks/process/process-09.jpg","artworks/process/process-10.jpg","artworks/process/process-14.jpg"],
+      final:["artworks/zara-01.jpg","artworks/zara-02.jpg","artworks/zara-04.jpg","artworks/zara-05.jpg","artworks/zara-07.jpg"]
+    },
+    { name:"Riko",
+      process:["artworks/process/process-03.jpg","artworks/process/process-04.jpg","artworks/process/process-11.jpg"],
+      final:["artworks/riko-01.jpg","artworks/riko-02.jpg","artworks/riko-03.jpg","artworks/riko-04.jpg","artworks/riko-06.jpg","artworks/riko-07.jpg"]
+    },
+    { name:"Sandal",
+      process:["artworks/process/process-08.jpg","artworks/process/process-12.jpg","artworks/process/process-15.jpg"],
+      final:["artworks/sandal-02.jpg","artworks/sandal-03.jpg","artworks/sandal-04.jpg","artworks/sandal-05.jpg","artworks/sandal-06.jpg","artworks/sandal-08.jpg"]
+    },
+    { name:"Aurora",
+      process:["artworks/process/process-05.jpg","artworks/process/process-06.jpg","artworks/process/process-13.jpg"],
+      final:["artworks/aurora-02.jpg"]
+    },
+    { name:"Valentina",
+      process:["artworks/process/process-01.jpg","artworks/process/process-07.jpg"],
+      final:["artworks/valentina-01.jpg","artworks/valentina-02.jpg"]
+    }
   ];
   /* ===================================================================== */
 
@@ -276,24 +283,54 @@
   el('yr').textContent = new Date().getFullYear();
   render();
 
-  // Process grid
+  // Process grid — grouped by piece: process first, then final
   (function renderProcess(){
     var grid = el('procGrid');
-    processPhotos.forEach(function(p){
-      var item = document.createElement('div');
-      item.className = 'proc-item';
-      var ph = document.createElement('div');
-      ph.className = 'ph';
-      var img = document.createElement('img');
-      img.src = p.img;
-      img.alt = p.piece + ' — work in progress';
-      ph.appendChild(img);
-      var cap = document.createElement('div');
-      cap.className = 'cap';
-      cap.innerHTML = '<span>' + p.piece + '</span> &middot; work in progress';
-      item.appendChild(ph);
-      item.appendChild(cap);
-      grid.appendChild(item);
+    pieceGallery.forEach(function(piece){
+      var heading = document.createElement('div');
+      heading.className = 'proc-heading';
+      heading.textContent = piece.name;
+      grid.appendChild(heading);
+
+      var sub1 = document.createElement('div');
+      sub1.className = 'proc-sub';
+      sub1.textContent = 'Process';
+      grid.appendChild(sub1);
+      var row1 = document.createElement('div');
+      row1.className = 'proc-row';
+      piece.process.forEach(function(src){
+        var item = document.createElement('div');
+        item.className = 'proc-item';
+        var ph = document.createElement('div');
+        ph.className = 'ph';
+        var img = document.createElement('img');
+        img.src = src;
+        img.alt = piece.name + ' — process';
+        ph.appendChild(img);
+        item.appendChild(ph);
+        row1.appendChild(item);
+      });
+      grid.appendChild(row1);
+
+      var sub2 = document.createElement('div');
+      sub2.className = 'proc-sub';
+      sub2.textContent = 'Finished';
+      grid.appendChild(sub2);
+      var row2 = document.createElement('div');
+      row2.className = 'proc-row';
+      piece.final.forEach(function(src){
+        var item = document.createElement('div');
+        item.className = 'proc-item';
+        var ph = document.createElement('div');
+        ph.className = 'ph';
+        var img = document.createElement('img');
+        img.src = src;
+        img.alt = piece.name + ' — finished';
+        ph.appendChild(img);
+        item.appendChild(ph);
+        row2.appendChild(item);
+      });
+      grid.appendChild(row2);
     });
   })();
 </script>
